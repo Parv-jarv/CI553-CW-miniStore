@@ -1,4 +1,4 @@
-package clients.cashier;
+	package clients.cashier;
 
 import catalogue.Basket;
 import middle.MiddleFactory;
