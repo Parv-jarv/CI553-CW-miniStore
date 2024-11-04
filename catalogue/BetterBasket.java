@@ -16,7 +16,7 @@ public class BetterBasket extends Basket implements Serializable
 	{
 		for(Product prInList: this) {
 			if(prInList.getProductNum().equals(pr.getProductNum())) {
-				int quantity = pr.getQuantity()+prInList.getQuantity();
+				int quantity = pr.getQuantity()+prInList.getQuantity();				// merges objects of the same id or in this case product number
 				prInList.setQuantity(quantity);
 				return(true);
 				
