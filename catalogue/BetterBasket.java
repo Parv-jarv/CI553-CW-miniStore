@@ -11,6 +11,8 @@ import java.util.Collections;
  */
 public class BetterBasket extends Basket implements Serializable
 {
+
+	int test = 1;
 	@Override 
 	public boolean add( Product pr )
 	{
@@ -19,6 +21,8 @@ public class BetterBasket extends Basket implements Serializable
 				int quantity = pr.getQuantity()+prInList.getQuantity();				// merges objects of the same id or in this case product number
 				prInList.setQuantity(quantity);
 				return(true);
+
+
 				
 			}
 		}
