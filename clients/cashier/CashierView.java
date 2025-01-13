@@ -153,7 +153,8 @@ public class CashierView implements Observer {
     public void playSound() {
       try {
 
-        File soundFile = new File("raw/chaching.wav");
+        File soundFile = new File("raw/chaching.wav");  // plays a cha - ching sound effect
+
         AudioInputStream audioStream = AudioSystem.getAudioInputStream(soundFile);
 
 
