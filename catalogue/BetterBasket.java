@@ -13,6 +13,7 @@ public class BetterBasket extends Basket implements Serializable
 {
 
 	int test = 1;
+	int test2 = 1;
 	@Override 
 	public boolean add( Product pr )
 	{
