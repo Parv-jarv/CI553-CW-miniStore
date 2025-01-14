@@ -1,6 +1,7 @@
 	package clients.cashier;
 
 import catalogue.Basket;
+import clients.Picture;
 import middle.MiddleFactory;
 import middle.OrderProcessing;
 import middle.StockException;
@@ -9,6 +10,8 @@ import middle.StockReadWriter;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.Observable;
@@ -19,9 +22,9 @@ import java.util.Observer;
  * View of the model 
  */
 public class CashierView implements Observer {
-  private static final int H = 300;       // Height of window pixels
-  private static final int W = 400;       // Width  of window pixels
-  File soundFile = new File("raw/chaching.wav");
+  private static final int H = 500;       // Height of window pixels
+  private static final int W = 500;       // Width  of window pixels
+
 
   private static final String CHECK = "Check";
   private static final String BUY = "Buy";
@@ -35,6 +38,20 @@ public class CashierView implements Observer {
   private final JButton theBtCheck = new JButton(CHECK);
   private final JButton theBtBuy = new JButton(BUY);
   private final JButton theBtBought = new JButton(BOUGHT);
+
+
+  private Picture img1 = new Picture(80,80);
+  private Picture img2 = new Picture(80, 80);
+  private Picture img3 = new Picture(80,80);
+  private Picture img4 = new Picture(80,80);
+  private Picture img5 = new Picture(80,80);
+  private Picture img6 = new Picture(80,80);
+  private Picture img7 = new Picture(80,80);
+
+
+
+
+
 
 
   private StockReadWriter theStock = null;
@@ -117,6 +134,123 @@ public class CashierView implements Observer {
     theSP.getViewport().add(theOutput);           //  In TextArea
     rootWindow.setVisible(true);                  // Make visible
     theInput.requestFocus();                        // Focus is here
+
+
+    //img1
+    img1.setBounds( 16, 25+60*6, 80, 80 );   // Picture area
+    cp.add( img1);
+
+    ImageIcon imageIcon = new ImageIcon("images/pic0001.jpg"); // Load the image from your path
+    img1.set(imageIcon);
+
+    img1.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
+        theInput.setText("0001");
+
+      }
+    });
+
+
+    //img2
+            img2.setBounds(16, 25 + 60 * 5, 80, 80);   // Picture area
+    cp.add( img2 );
+
+    ImageIcon imageIcon2 = new ImageIcon("images/pic0002.jpg"); // Load the image from your path
+    img2.set(imageIcon2);
+
+    img2.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
+        theInput.setText("0002");
+
+      }
+    });
+
+
+    //img3
+    img3.setBounds( 16 * 7 , 25+60*6, 80, 80 );   // Picture area
+    cp.add( img3);
+
+    ImageIcon imageIcon3 = new ImageIcon("images/pic0003.jpg"); // Load the image from your path
+    img3.set(imageIcon3);
+    img3.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
+        theInput.setText("0003");
+
+      }
+    });
+
+    //img4
+    img4.setBounds( 16 * 7, 25+60*5, 80, 80 );   // Picture area
+    cp.add( img4);
+
+    ImageIcon imageIcon4 = new ImageIcon("images/pic0004.jpg"); // Load the image from your path
+    img4.set(imageIcon4);
+
+    img4.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
+        theInput.setText("0004");
+
+      }
+    });
+
+    //img5
+    img5.setBounds( 16 * 14, 25+60*6, 80, 80 );   // Picture area
+    cp.add( img5);
+
+    ImageIcon imageIcon5 = new ImageIcon("images/pic0005.jpg"); // Load the image from your path
+    img5.set(imageIcon5);
+    img5.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
+        theInput.setText("0005");
+
+      }
+    });
+
+    //img6
+    img6.setBounds( 16 * 14, 25+60*5, 80, 80 );   // Picture area
+    cp.add( img6);
+
+    ImageIcon imageIcon6 = new ImageIcon("images/pic0006.jpg"); // Load the image from your path
+    img6.set(imageIcon6);
+
+    img6.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
+        theInput.setText("0006");
+
+      }
+    });
+
+    //img7
+    img7.setBounds( 16 * 21, 25+60*6, 80, 80 );   // Picture area
+    cp.add( img7);
+
+    ImageIcon imageIcon7 = new ImageIcon("images/pic0007.jpg"); // Load the image from your path
+    img7.set(imageIcon7);
+
+    img7.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
+        theInput.setText("0007");
+
+      }
+    });
+
+
+
+
   }
 
   /**
@@ -179,7 +313,7 @@ public class CashierView implements Observer {
       } catch (UnsupportedAudioFileException e) {
         System.out.println("The specified audio file is not supported.");
       } catch (LineUnavailableException e) {
-        System.out.println("Audio line for playback is unavailable.");
+        System.out.println("Audio line for playback is 3unavailable.");
       } catch (IOException e) {
         System.out.println("Error playing the audio file.");
       } catch (InterruptedException e) {
