@@ -8,6 +8,8 @@ import middle.StockReader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -23,8 +25,8 @@ public class CustomerView implements Observer
     public static final String CLEAR  = "Clear";
   }
 
-  private static final int H = 300;       // Height of window pixels
-  private static final int W = 400;       // Width  of window pixels
+  private static final int H = 500;       // Height of window pixels
+  private static final int W = 500;       // Width  of window pixels
 
   private final JLabel      pageTitle  = new JLabel();
   private final JLabel      theAction  = new JLabel();
@@ -33,10 +35,19 @@ public class CustomerView implements Observer
   private final JScrollPane theSP      = new JScrollPane();
   private final JButton     theBtCheck = new JButton( Name.CHECK );
   private final JButton     theBtClear = new JButton( Name.CLEAR );
-
+  private final JButton change2dark = new JButton();
   private Picture thePicture = new Picture(80,80);
   private StockReader theStock   = null;
   private CustomerController cont= null;
+
+  private Picture img1 = new Picture(80,80);
+  private Picture img2 = new Picture(80, 80);
+  private Picture img3 = new Picture(80,80);
+  private Picture img4 = new Picture(80,80);
+  private Picture img5 = new Picture(80,80);
+  private Picture img6 = new Picture(80,80);
+  private Picture img7 = new Picture(80,80);
+
 
   /**
    * Construct the view
@@ -56,10 +67,12 @@ public class CustomerView implements Observer
       System.out.println("Exception: " + e.getMessage() );
     }
     Container cp         = rpc.getContentPane();    // Content Pane
-    Container rootWindow = (Container) rpc;         // Root Window
+    Container rootWindow = (Container) rpc;// Root Window
     cp.setLayout(null);                             // No layout manager
     rootWindow.setSize( W, H );                     // Size of Window
     rootWindow.setLocation( x, y );
+
+
 
     Font f = new Font("Monospaced",Font.PLAIN,12);  // Font f is
     
@@ -78,8 +91,31 @@ public class CustomerView implements Observer
     cp.add( theBtClear );                           //  Add to canvas
 
     theAction.setBounds( 110, 25 , 270, 20 );       // Message area
-    theAction.setText( " " );                       // blank
-    cp.add( theAction );                            //  Add to canvas
+    theAction.setText( " " );// blank
+
+    cp.add( theAction );//  Add to canvas
+
+    final int[] counter = {0};
+
+    change2dark.setBounds( 16, 25+60*4, 80, 40 );
+    change2dark.setText("Dark Mode");
+    change2dark.addActionListener(                   // Call back code
+          e ->{
+            counter[0] = counter[0] + 1;
+            if (counter[0] %2 == 1){
+              cp.setBackground(Color.DARK_GRAY);
+              pageTitle.setForeground(Color.WHITE);
+            }else{
+              cp.setBackground(Color.white);
+              pageTitle.setForeground(Color.BLACK);
+            }
+
+
+          });
+    cp.add(change2dark);
+
+
+
 
     theInput.setBounds( 110, 50, 270, 40 );         // Product no area
     theInput.setText("");                           // Blank
@@ -96,7 +132,121 @@ public class CustomerView implements Observer
     thePicture.clear();
     
     rootWindow.setVisible( true );                  // Make visible);
-    theInput.requestFocus();                        // Focus is here
+    theInput.requestFocus();// Focus is here
+
+
+    //img1
+    img1.setBounds( 16, 25+60*6, 80, 80 );   // Picture area
+    cp.add( img1);
+
+    ImageIcon imageIcon = new ImageIcon("images/pic0001.jpg"); // Load the image from your path
+    img1.set(imageIcon);
+
+    img1.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
+        theInput.setText("0001");
+
+      }
+    });
+
+
+    //img2
+    img2.setBounds(16, 25 + 60 * 5, 80, 80);   // Picture area
+    cp.add( img2 );
+
+    ImageIcon imageIcon2 = new ImageIcon("images/pic0002.jpg"); // Load the image from your path
+    img2.set(imageIcon2);
+
+    img2.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
+        theInput.setText("0002");
+
+      }
+    });
+
+
+    //img3
+    img3.setBounds( 16 * 7 , 25+60*6, 80, 80 );   // Picture area
+    cp.add( img3);
+
+    ImageIcon imageIcon3 = new ImageIcon("images/pic0003.jpg"); // Load the image from your path
+    img3.set(imageIcon3);
+    img3.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
+        theInput.setText("0003");
+
+      }
+    });
+
+    //img4
+    img4.setBounds( 16 * 7, 25+60*5, 80, 80 );   // Picture area
+    cp.add( img4);
+
+    ImageIcon imageIcon4 = new ImageIcon("images/pic0004.jpg"); // Load the image from your path
+    img4.set(imageIcon4);
+
+    img4.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
+        theInput.setText("0004");
+
+      }
+    });
+
+    //img5
+    img5.setBounds( 16 * 14, 25+60*6, 80, 80 );   // Picture area
+    cp.add( img5);
+
+    ImageIcon imageIcon5 = new ImageIcon("images/pic0005.jpg"); // Load the image from your path
+    img5.set(imageIcon5);
+    img5.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
+        theInput.setText("0005");
+
+      }
+    });
+
+    //img6
+    img6.setBounds( 16 * 14, 25+60*5, 80, 80 );   // Picture area
+    cp.add( img6);
+
+    ImageIcon imageIcon6 = new ImageIcon("images/pic0006.jpg"); // Load the image from your path
+    img6.set(imageIcon6);
+
+    img6.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
+        theInput.setText("0006");
+
+      }
+    });
+
+    //img7
+    img7.setBounds( 16 * 21, 25+60*6, 80, 80 );   // Picture area
+    cp.add( img7);
+
+    ImageIcon imageIcon7 = new ImageIcon("images/pic0007.jpg"); // Load the image from your path
+    img7.set(imageIcon7);
+
+    img7.addMouseListener(new MouseAdapter() {
+      @Override
+      public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
+        theInput.setText("0007");
+
+      }
+    });
+
   }
 
    /**
