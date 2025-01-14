@@ -10,6 +10,8 @@ import clients.cashier.CashierView;
 import clients.customer.CustomerController;
 import clients.customer.CustomerModel;
 import clients.customer.CustomerView;
+import clients.login.loginModel;
+import clients.login.loginView;
 import clients.packing.PackingController;
 import clients.packing.PackingModel;
 import clients.packing.PackingView;
@@ -46,6 +48,7 @@ class Main
                               // you can create multiple clients
     startPackingGUI_MVC( mlf );
     startBackDoorGUI_MVC( mlf );
+    startloginGUI_MVC(mlf);
   }
   
   /**
@@ -131,5 +134,20 @@ class Main
     model.addObserver( view );       // Add observer to the model
     window.setVisible(true);         // Make window visible
   }
+
+   public void startloginGUI_MVC(MiddleFactory mlf)
+   {
+     JFrame  window = new JFrame();
+     window.setTitle("Login");
+     window.getDefaultCloseOperation();
+     Dimension pos = PosOnScrn.getPos();
+
+     loginModel model = new loginModel(mlf);
+     loginView view = new loginView(window,mlf, pos.width, pos.height);
+     model.addObserver(view);
+
+
+     window.setVisible(true);
+   }
   
 }
