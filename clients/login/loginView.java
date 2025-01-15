@@ -1,12 +1,7 @@
 package clients.login;
 
 
-import catalogue.Basket;
-import catalogue.BetterBasket;
-import clients.Picture;
-import clients.cashier.CashierModel;
 import middle.MiddleFactory;
-import middle.StockReader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,6 +15,7 @@ public class loginView implements Observer {
     private static final int W = 300;
 
 
+
     private final JLabel title1 = new JLabel();
     private final JLabel title2 = new JLabel();
     private final TextField Username = new TextField();
@@ -27,10 +23,18 @@ public class loginView implements Observer {
     private final JButton logIn = new JButton();
     private final JCheckBox show = new JCheckBox();
 
+
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private LoginListener loginListener;
+
+    public interface LoginListener {
+        void onLoginSuccess(); // Callback method for successful login
+    }
+
+public loginView (RootPaneContainer rpc, MiddleFactory mf, int x, int y, LoginListener loginListener) {
 
 
-public loginView (RootPaneContainer rpc, MiddleFactory mf, int x, int y) {
+
     Container cp = rpc.getContentPane();
     Container rootWindow = (Container) rpc;
     cp.setLayout(null);
@@ -38,29 +42,30 @@ public loginView (RootPaneContainer rpc, MiddleFactory mf, int x, int y) {
     rootWindow.setLocation(x, y);
 
 
+    String input1 = "";
     title1.setBounds(100,50,300,25);
     title1.setText("Username");
     Username.setBounds(100, 75, 300, 25);
     Username.setText("");
+    input1 = Username.getText();
 
     title2.setBounds(100,100,300,25);
     title2.setText("Password");
     Password.setBounds(100, 125, 300, 25);
-    String prompt = "Enter Password";
-    String input = "";
+    String input2= "";
 
         Password.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                Password.setText(input);
+                Password.setText("");
                 Password.setEchoChar('*');
 
-                Password.setForeground(Color.black);
 
             }
 
         });
+     input2 = new String(Password.getPassword());
 
     show.setBounds(100,80,200,200);
     show.setText("Show Password");
@@ -77,11 +82,42 @@ public loginView (RootPaneContainer rpc, MiddleFactory mf, int x, int y) {
 
 
 
-
+    String Cashier = "123";
+    String password = "123";
 
     logIn.setBounds(275,175,100,50);
     logIn.setText("Log in");
+    logIn.addActionListener(
+            e -> {
+                String enteredUsername = Username.getText(); // Get the username from the field
+                String enteredPassword = new String(Password.getPassword()); // Get the password from the field
 
+                if (!enteredUsername.equals(Cashier) && !enteredPassword.equals(password)) {
+                    JOptionPane.showMessageDialog(null, "Incorrect Username and Password!");
+                } else if (!enteredUsername.equals(Cashier)) {
+                    JOptionPane.showMessageDialog(null, "Incorrect Username!");
+                } else if (!enteredPassword.equals(password)) {
+                    JOptionPane.showMessageDialog(null, "Incorrect Password!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Correct Username and Password!");
+
+                    ((Container) rpc).setVisible(false);
+                    if (loginListener != null) {
+                        loginListener.onLoginSuccess(); // Notify the listener that login was successful
+                    }
+
+
+
+
+
+
+
+
+                }
+            }
+
+
+    );
 
 
 
@@ -98,15 +134,17 @@ public loginView (RootPaneContainer rpc, MiddleFactory mf, int x, int y) {
     cp.add(title2);
 
     displaySize(screenHeight,screenWidth);
+
 }
+
+
 
     @Override
     public void update(Observable o, Object arg) {
-
         loginModel model = (loginModel) o;
-
-
     }
+
+
 
     public void displaySize(int screenHeight, int screenWidth){
         // java - get screen size using the Toolkit class

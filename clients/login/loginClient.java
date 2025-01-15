@@ -1,8 +1,5 @@
 package clients.login;
 
-import clients.customer.CustomerController;
-import clients.customer.CustomerModel;
-import clients.customer.CustomerView;
 import middle.MiddleFactory;
 import middle.Names;
 import middle.RemoteMiddleFactory;
@@ -28,10 +25,15 @@ public class loginClient {
         window.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
         loginModel model = new loginModel(mf);
-        loginView view  = new loginView( window, mf, 0, 0 );
+        loginView view  = new loginView( window, mf, 0, 0, new loginView.LoginListener() {
+            @Override
+            public void onLoginSuccess() {
+
+            }
+        });
 
 
         model.addObserver( view );
-        window.setVisible(true);// Display Scree
+        window.setVisible(true);
     }
 }
